@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Pulse | Giving Apples a Second Chance</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-silver: #f5f5f7;
+            --apple-gray: #86868b;
+            --apple-black: #1d1d1f;
+            --pulse-blue: #0071e3;
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--apple-silver);
+            color: var(--apple-black);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--apple-black) !important;
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--pulse-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #1d1d1f, #86868b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--apple-gray);
+            margin-bottom: 40px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card {
+            border-radius: 28px;
+            overflow: hidden;
+            background: #fff;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .product-img-container {
+            padding: 30px;
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 250px;
+        }
+
+        .product-img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .product-content {
+            padding: 30px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #f2f2f2;
+            color: #86868b;
+            margin-bottom: 15px;
+        }
+
+        .status-sold {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .btn-pulse {
+            background: var(--pulse-blue);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 100px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-pulse:hover {
+            background: #0077ed;
+            box-shadow: 0 8px 20px rgba(0,113,227,0.3);
+            color: white;
+        }
+
+        .footer {
+            padding: 60px 0;
+            background: #fff;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+
+        .founder-sig {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.8rem;
+            margin-top: 10px;
+            color: var(--pulse-blue);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .glossy-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.4) 0%, transparent 40%);
+            z-index: 9999;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .section-padding { padding: 60px 0; }
+        }
+
+        .guest-mode-banner {
+            background: var(--apple-black);
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .page-content {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .page-active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="guest-mode-banner">
+        Browsing as Guest | Secure Connection Enabled
+    </div>
+
+    <div class="glossy-overlay"></div>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showPage('home')">
+                <img src="logo.png" alt="Silver Pulse" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg'">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('home')">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('products')">Macs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about')">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('courses')">Courses</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="page-content page-active">
+        <header class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">Silver Pulse</h1>
+                <p class="hero-subtitle">Giving Apples a Second Chance</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" onclick="showPage('products')" class="btn-pulse">View Available Macs</a>
+                    <a href="#" onclick="showPage('about')" class="btn btn-outline-dark rounded-pill px-4">Learn More</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="section-padding">
+            <div class="container">
+                <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                        <div class="glass-card">
+                            <span class="feature-icon">🔍</span>
+                            <h3>Hand-Picked</h3>
+                            <p class="text-muted">Every unit is selected for structural integrity and aesthetic perfection.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card">
+                            <span class="feature-icon">⚙️</span>
+                            <h3>Upgraded</h3>
+                            <p class="text-muted">Maximum RAM and SSD throughput to meet 2026 performance standards.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card">
+                            <span class="feature-icon">🛡️</span>
+                            <h3>Guaranteed</h3>
+                            <p class="text-muted">30-day refund policy for absolute peace of mind with your purchase.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="products" class="page-content">
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="mb-5 fw-bold">Current Inventory</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="imac2013i5.png" alt="iMac Late 2013" onerror="this.src='https://images.clothes.apple.com/is/image/AppleInc/step-desktop-imac-family?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1632770518000'">
+                            </div>
+                            <div class="product-content">
+                                <span class="status-badge status-sold">SOLD OUT</span>
+                                <h4>iMac 21.5" (Late 2013)</h4>
+                                <p class="small text-muted mb-3">Professional Grade Desktop</p>
+                                <p class="text-muted">A production powerhouse featuring a 2.7GHz Quad-Core i5. Upgraded to 16GB RAM, making it a dream for office multitasking and creative workflows. Includes a crisp 1080p IPS display with vibrant color accuracy.</p>
+                                <ul class="small text-muted">
+                                    <li>16GB Dual-Channel DDR3</li>
+                                    <li>1TB High-Capacity Storage</li>
+                                    <li>Intel Iris Pro Graphics</li>
+                                    <li>Turbo Boost up to 3.6Ghz</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="macbookair2013i5.png" alt="MacBook Air Mid 2013" onerror="this.src='https://images.clothes.apple.com/is/image/AppleInc/step-macbook-air-family?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1632770518000'">
+                            </div>
+                            <div class="product-content">
+                                <span class="status-badge status-sold">SOLD OUT</span>
+                                <h4>MacBook Air 13.3" (Mid 2013)</h4>
+                                <p class="small text-muted mb-3">The Ultimate Portability</p>
+                                <p class="text-muted">The definitive student machine. Razor-thin design paired with a 128GB SSD for near-instant boot times. This unit has been deep-cleaned and tested for maximum battery efficiency on the go.</p>
+                                <ul class="small text-muted">
+                                    <li>1.3Ghz Dual-Core i5</li>
+                                    <li>128GB PCIe Flash Storage</li>
+                                    <li>Intel HD Graphics 5000</li>
+                                    <li>720p FaceTime HD Camera</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="macmini2012i5.png" alt="Mac Mini Late 2012" onerror="this.src='https://images.clothes.apple.com/is/image/AppleInc/step-desktop-mac-mini-family?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1632770518000'">
+                            </div>
+                            <div class="product-content">
+                                <span class="status-badge status-sold">SOLD OUT</span>
+                                <h4>Mac Mini (Late 2012)</h4>
+                                <p class="small text-muted mb-3">Compact Powerhouse</p>
+                                <p class="text-muted">The legendary Late 2012 Mini. Maxed out with 16GB RAM, this machine handles modern tasks with surprising agility. Perfect for a home server, media center, or a sleek desktop setup.</p>
+                                <ul class="small text-muted">
+                                    <li>16GB DDR3 RAM Upgrade</li>
+                                    <li>500GB Reliable Storage</li>
+                                    <li>Intel HD Graphics 4000</li>
+                                    <li>Turbo Boost up to 3.1Ghz</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <p class="hero-subtitle">MORE PRODUCTS COMING IN THE NEAR FUTURE!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="about" class="page-content">
+        <section class="section-padding">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="glass-card">
+                            <h2 class="mb-4 fw-bold">A Note from the Founder</h2>
+                            <p>Hi, I’m <strong>Gerard Yhui</strong>! I started <strong>Silver Pulse</strong> because I believe premium Apple hardware shouldn’t go to waste just because it needs a little expert attention. My mission is to give these iconic machines a second chance at life.</p>
+                            
+                            <h5 class="mt-4 fw-bold">The Standard</h5>
+                            <p>I personally hand-pick, clean, and upgrade every machine to ensure it’s ready for its next home. I select only the best-condition Macs—if I wouldn't use it myself, I won't sell it to you.</p>
+                            
+                            <h5 class="mt-4 fw-bold">Modern Engineering</h5>
+                            <p>Every machine is upgraded to a modern standard with high-speed SSDs and expanded RAM. Using <strong>OpenCore Legacy Patcher</strong>, I bridge the gap between classic hardware and new software, installing the newest stable version of macOS so you get the latest features and security on hardware that was built to last.</p>
+                            
+                            <h5 class="mt-4 fw-bold">Peace of Mind</h5>
+                            <p>I stand behind my work. Every purchase comes with a <strong>30-day refund guarantee</strong>. Thank you for supporting a local student business and helping keep great tech out of landfills!</p>
+                            
+                            <div class="founder-sig">Gerard Yhui</div>
+                            <p class="small text-muted mt-2">Founder, Silver Pulse</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="courses" class="page-content">
+        <section class="section-padding text-center">
+            <div class="container">
+                <h2 class="hero-title">Knowledge Lab</h2>
+                <p class="hero-subtitle">Master your Mac with our upcoming courses.</p>
+                <div class="glass-card py-5">
+                    <h3>Coming Soon</h3>
+                    <p class="text-muted">We are currently curating content for hardware maintenance and software optimization.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-1">&copy; 2025 Silver Pulse. All Rights Reserved.</p>
+            <p class="small text-muted">Giving Apples a Second Chance | Byford, Western Australia</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('page-active');
+            });
+            
+            document.getElementById(pageId).classList.add('page-active');
+            window.scrollTo(0, 0);
+            
+            const navCollapse = document.getElementById('navbarNav');
+            if (navCollapse.classList.contains('show')) {
+                new bootstrap.Collapse(navCollapse).hide();
+            }
+        }
+    </script>
+</body>
+</html>
