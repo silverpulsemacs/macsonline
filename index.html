@@ -63,7 +63,7 @@
         }
 
         .navbar {
-            background: rgba(255, 255, 255, 0.03); /* Nearly transparent */
+            background: rgba(255, 255, 255, 0.01); /* Nearly transparent */
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -87,11 +87,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .navbar-container.minimized .navbar-brand img {
-            height: 40px; /* Shrink logo */
+            height: 50px; /* Shrink logo slightly */
         }
 
         .navbar-brand img {
-            height: 65px;
+            height: 85px; /* Bigger Logo */
             transition: height 0.6s var(--liquid-ease);
         }
 
@@ -124,7 +124,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 20px;
+            padding: 180px 20px 100px 20px; /* Increased top padding to push text down */
             position: relative;
         }
 
@@ -215,7 +215,7 @@
         .product-img {
             max-width: 100%;
             height: 250px;
-            object-fit: contain; /* Ensures image fits perfectly in box */
+            object-fit: contain;
             margin-bottom: 30px;
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
             transition: transform 0.5s;
@@ -242,7 +242,7 @@
             backdrop-filter: blur(10px);
             z-index: 9999;
             display: none;
-            padding: 80px 40px;
+            padding: 120px 40px 60px 40px; /* Top padding to clear navbar */
             overflow-y: auto;
             animation: expandIn 0.6s var(--liquid-ease);
         }
@@ -252,9 +252,15 @@
             position: relative;
             text-align: center;
             margin-bottom: 50px;
+            height: 400px; /* Fixed container height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .gallery-main-img {
-            height: 50vh;
+            max-height: 350px; /* Smaller image size as requested */
+            max-width: 100%;
+            width: auto;
             object-fit: contain;
             transition: opacity 0.4s;
         }
@@ -292,6 +298,7 @@
             .navbar { width: 100% !important; border-radius: 0 !important; background: black !important; }
             .navbar-container { position: sticky; padding: 0; }
             .ad-title { font-size: 3.5rem; }
+            .hero-ad { padding-top: 100px; }
         }
     </style>
 </head>
@@ -376,7 +383,7 @@
         </section>
 
         <!-- Hours Section -->
-        <section class="container py-5 mb-5">
+        <section class="container py-5">
             <div class="glass-card">
                 <h2 class="fw-bold mb-4">Visit the Pop-Up Store</h2>
                 <p class="text-gray mb-4">Located at Serpentine Jarrahdale Library in Byford.</p>
@@ -399,11 +406,15 @@
                 </div>
             </div>
         </section>
+
+        <footer class="py-5 text-center text-gray">
+            <p>&copy; 2026 Silver Pulse & Silver Pulse Learning. Giving Apples a Second Chance.</p>
+        </footer>
     </div>
 
     <!-- ABOUT US PAGE -->
     <div id="about" class="page-content">
-        <div class="container py-5">
+        <div class="container py-5" style="padding-top: 150px !important;">
             <div class="glass-card">
                 <h2 class="display-4 fw-bold mb-5">Hey there!</h2>
                 <div class="row g-5">
@@ -428,7 +439,7 @@
 
     <!-- MACS PAGE -->
     <div id="products" class="page-content">
-        <div class="container py-5">
+        <div class="container py-5" style="padding-top: 150px !important;">
             <div class="d-flex justify-content-between align-items-center mb-5">
                 <h2 class="display-3 fw-bold">The Lineup</h2>
                 <div class="btn-group">
@@ -482,7 +493,7 @@
 
     <!-- COURSES PAGE -->
     <div id="courses" class="page-content">
-        <div class="container py-5">
+        <div class="container py-5" style="padding-top: 150px !important;">
             <div class="glass-card">
                 <h2 class="display-3 fw-bold mb-4">Silver Pulse Learning</h2>
                 <p class="fs-4 text-gray mb-5">Professional learning of 5yrs of knowledge. We listen to your doubts.</p>
@@ -514,7 +525,7 @@
 
     <!-- CONTACT PAGE -->
     <div id="contact" class="page-content">
-        <div class="container py-5 text-center">
+        <div class="container py-5 text-center" style="padding-top: 150px !important;">
             <div class="glass-card">
                 <h2 class="display-2 fw-bold mb-4">Let's Talk.</h2>
                 <div class="d-flex flex-wrap justify-content-center gap-4 mt-5">
@@ -550,10 +561,9 @@
                     <div class="mt-4">
                         <select class="form-select bg-dark text-white border-secondary mb-3 p-3 rounded-4" id="editionSelect" onchange="updateEdition()">
                             <option value="Standard">Standard Edition</option>
-                            <option value="Ultimate">Ultimate Edition</option>
-                            <option value="Legendary">Legendary Edition</option>
+                            <option value="AllInOne">All-in-One Edition</option>
                         </select>
-                        <a href="https://www.ebay.com.au" target="_blank" class="btn-pulse w-100 text-center">Buy</a>
+                        <a href="https://www.ebay.com" target="_blank" class="btn-pulse w-100 text-center">Buy</a>
                     </div>
                 </div>
             </div>
@@ -606,13 +616,7 @@
             
             // Set correct dropdown options
             const select = document.getElementById('editionSelect');
-            if(type === 'Air') {
-                select.innerHTML = '<option value="Standard">Standard Edition</option><option value="AllInOne">All-in-One Edition</option>';
-            } else if (type === 'Mini') {
-                 select.innerHTML = '<option value="Standard">Standard Edition</option><option value="Ultimate">Ultimate Edition</option><option value="AllInOne">All-in-One Edition</option>';
-            } else {
-                select.innerHTML = '<option value="Standard">Standard Edition</option><option value="Ultimate">Ultimate Edition</option><option value="Legendary">Legendary Edition</option>';
-            }
+            select.innerHTML = '<option value="Standard">Standard Edition</option><option value="AllInOne">All-in-One Edition</option>';
             updateEdition();
         }
 
@@ -648,13 +652,11 @@
             if(currentType === 'iMac') {
                 title.innerText = "Late 2013 iMac";
                 if(edition === 'Standard') { p = "$199.99"; s = "<li>21.5\" 1080p Display</li><li>Quad-Core i5</li><li>16GB RAM</li><li>1TB HDD</li><li>Power Cable</li>"; }
-                else if(edition === 'Ultimate') { p = "$249.99"; s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li>"; }
-                else { p = "$319.99"; s = "<li>Everything in Ultimate</li><li>+ Extra 24\" Monitor</li><li>+ Video Cables</li>"; }
+                else { p = "$249.99"; s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li>"; }
             } else if(currentType === 'Mini') {
                 title.innerText = "Late 2012 Mac Mini";
                 if(edition === 'Standard') { p = "$189.99"; s = "<li>2.5GHz Dual-Core i5</li><li>16GB RAM</li><li>500GB HDD</li><li>Power Cable</li>"; }
-                else if(edition === 'Ultimate') { p = "$239.99"; s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li>"; }
-                else { p = "$299.99"; s = "<li>Everything in Ultimate</li><li>+ 24\" Monitor</li><li>+ Video Cables</li>"; }
+                else { p = "$299.99"; s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li><li>+ 24\" Monitor</li><li>+ Video Cables</li>"; }
             } else {
                 title.innerText = "Mid 2013 MacBook Air";
                 if(edition === 'Standard') { p = "$169.99"; s = "<li>1.3GHz Dual-Core i5</li><li>4GB RAM</li><li>128GB SSD</li><li>MagSafe 2 Charger</li>"; }
