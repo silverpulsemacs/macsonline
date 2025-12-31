@@ -63,17 +63,16 @@
         }
 
         .navbar {
-            background: rgba(255, 255, 255, 0.01); /* Nearly transparent */
+            background: rgba(255, 255, 255, 0.01);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 15px 40px;
             transition: all 0.6s var(--liquid-ease);
-            width: 95%; /* Start wide */
+            width: 95%;
             border-radius: 20px;
         }
 
-        /* Minimized State */
         .navbar-container.minimized {
             padding: 10px 0;
         }
@@ -87,11 +86,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .navbar-container.minimized .navbar-brand img {
-            height: 50px; /* Shrink logo slightly */
+            height: 50px;
         }
 
         .navbar-brand img {
-            height: 85px; /* Bigger Logo */
+            height: 85px;
             transition: height 0.6s var(--liquid-ease);
         }
 
@@ -127,7 +126,6 @@
             padding: 180px 20px 100px 20px;
             position: relative;
             overflow: hidden;
-            background-color: #0f0f0f; /* Fallback color if video fails */
         }
 
         .ad-video {
@@ -136,14 +134,14 @@
             width: 100%; height: 100%;
             object-fit: cover;
             z-index: -2;
-            opacity: 0.5;
+            opacity: 0.45;
         }
 
         .ad-tint {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
             z-index: -1;
         }
 
@@ -193,7 +191,7 @@
             border-color: white;
         }
 
-        /* --- Info Boxes with Icons --- */
+        /* --- Info Boxes --- */
         .info-box {
             background: var(--glass-clear);
             border-radius: 30px;
@@ -278,7 +276,7 @@
         }
         .gallery-main-img {
             max-height: 350px;
-            max-width: 80%; /* Reduced width to prevent overflow */
+            max-width: 100%;
             width: auto;
             object-fit: contain;
             transition: opacity 0.4s;
@@ -388,7 +386,7 @@
 
             <!-- iMac Section with Video -->
             <div class="hero-ad rounded-5 my-5 shadow-lg">
-                <video class="ad-video" autoplay muted loop playsinline poster="imac2013.png">
+                <video class="ad-video" autoplay muted loop playsinline>
                     <source src="imacad.mp4" type="video/mp4">
                 </video>
                 <div class="ad-tint rounded-5"></div>
@@ -401,7 +399,7 @@
 
             <!-- MacBook Air Section with Video -->
             <div class="hero-ad rounded-5 my-5 shadow-lg">
-                <video class="ad-video" autoplay muted loop playsinline poster="macbookair2013.png">
+                <video class="ad-video" autoplay muted loop playsinline>
                     <source src="macbookairad.mp4" type="video/mp4">
                 </video>
                 <div class="ad-tint rounded-5"></div>
@@ -466,7 +464,7 @@
             </div>
         </section>
 
-        <footer class="py-5 text-center text-gray border-top border-secondary">
+        <footer class="py-5 text-center text-gray">
             <p>&copy; 2026 Silver Pulse & Silver Pulse Learning. Giving Apples a Second Chance.</p>
         </footer>
     </div>
@@ -709,34 +707,16 @@
 
             if(currentType === 'iMac') {
                 title.innerText = "Late 2013 iMac";
-                if(edition === 'Standard') { 
-                    p = "$199.99"; 
-                    s = "<li>21.5\" 1080p Display</li><li>Quad-Core i5</li><li>16GB RAM</li><li>1TB HDD</li><li>Power Cable</li>"; 
-                }
-                else { 
-                    p = "$249.99"; 
-                    s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li>"; 
-                }
+                if(edition === 'Standard') { p = "$199.99"; s = "<li>21.5\" 1080p Display</li><li>Quad-Core i5</li><li>16GB RAM</li><li>1TB HDD</li><li>Power Cable</li>"; }
+                else { p = "$249.99"; s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li>"; }
             } else if(currentType === 'Mini') {
                 title.innerText = "Late 2012 Mac Mini";
-                if(edition === 'Standard') { 
-                    p = "$189.99"; 
-                    s = "<li>2.5GHz Dual-Core i5</li><li>16GB RAM</li><li>500GB HDD</li><li>Power Cable</li>"; 
-                }
-                else { 
-                    p = "$299.99"; 
-                    s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li><li>+ 24\" Monitor</li><li>+ Video Cables</li>"; 
-                }
+                if(edition === 'Standard') { p = "$189.99"; s = "<li>2.5GHz Dual-Core i5</li><li>16GB RAM</li><li>500GB HDD</li><li>Power Cable</li>"; }
+                else { p = "$299.99"; s = "<li>Everything in Standard</li><li>+ Wired Keyboard</li><li>+ Wired Mouse</li><li>+ 24\" Monitor</li><li>+ Video Cables</li>"; }
             } else {
                 title.innerText = "Mid 2013 MacBook Air";
-                if(edition === 'Standard') { 
-                    p = "$169.99"; 
-                    s = "<li>1.3GHz Dual-Core i5</li><li>4GB RAM</li><li>128GB SSD</li><li>MagSafe 2 Charger</li>"; 
-                }
-                else { 
-                    p = "$279.99"; 
-                    s = "<li>Everything in Standard</li><li>+ Mini DP Dongle</li><li>+ 24\" Monitor</li><li>+ Video Cables</li>"; 
-                }
+                if(edition === 'Standard') { p = "$169.99"; s = "<li>1.3GHz Dual-Core i5</li><li>4GB RAM</li><li>128GB SSD</li><li>MagSafe 2 Charger</li>"; }
+                else { p = "$279.99"; s = "<li>Everything in Standard</li><li>+ Mini DP Dongle</li><li>+ 24\" Monitor</li><li>+ Video Cables</li>"; }
             }
             price.innerText = p;
             specs.innerHTML = s;
